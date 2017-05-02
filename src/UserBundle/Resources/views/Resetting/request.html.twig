@@ -1,0 +1,43 @@
+{% extends '::baseUser.html.twig' %}
+
+    {% block title %}Connectez-vous{% endblock %}
+    
+    {% block body %}
+
+		<div class="container" style="margin-top:70px">
+			<div class="row">
+			    <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+				    <div class="panel panel-default">				    
+				        <div class="panel-body">
+					      	{% block fos_user_content %}
+						        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+								    
+							        <fieldset style="background-color: rgb(31,174,151);">
+							            <div class="row">
+							               <div style="padding:25px;"> <img class="profile-img" src="http://3rwebtech.com/logo2.png" class="img-responsive" alt=""> </div>					              
+							            </div>
+							            <div class="row" style="margin-bottom: 20px;">
+							                <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+								                <div class="form-group">
+									                <label>Nom d'utilisateur:</label>
+										                <div class="input-group"> 
+										                	<span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i></span>
+										                    <input class="form-control" placeholder="Username" id="username" name="username" type="text" required="required">
+										                </div>
+								                </div>							                				               
+								                
+								                <div class="col-md-12 text-center">
+								                	<input type="submit" id="_submit" name="_submit" class="btn btn-warning" value="Validez">
+								                </div>							                
+							                </div>
+							            </div>						           
+							        </fieldset>
+						        </form>
+					    	{% endblock fos_user_content %}
+				        </div>
+				    </div>
+			    </div>
+			</div>
+		</div>
+		
+	{% endblock %}

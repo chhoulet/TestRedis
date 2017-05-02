@@ -1,0 +1,62 @@
+{% extends '::base.html.twig' %}
+
+	{% block title %}Modifier mon profil{% endblock %}
+
+	{% block body %}
+
+		<div class="row">
+			<div class="col-md-12">				
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Mise à jour de mes informations personnelles
+                    </div>
+                    <div class="panel-body" style="text-align:center;">
+                        <button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Editer mon profil</button>
+                    </div>
+                    <div class="panel-footer">
+                        A paramétrer !
+                    </div>
+                </div>                    
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(217,237,247);">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Mes informations personnelles</h4>
+                    </div>
+                    {% block fos_user_content %}
+                        <div class="modal-body">
+                            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+                                {{ form_row(form.username )}}
+                                {{ form_row(form.name )}}
+                                {{ form_row(form.firstname )}}
+                                {{ form_row(form.adress )}}
+                                {{ form_row(form.postCode )}}
+                                {{ form_row(form.city )}}
+                                {{ form_row(form.phone )}}
+                                {{ form_row(form.email )}}
+                                <label>Saisissez votre mot de passe :</label>
+                                    {{ form_widget(form.plainPassword.first )}}
+                                <label>Confirmez votre mot de passe :</label>
+                                    {{ form_widget(form.plainPassword.second )}}                                    
+                        </div>
+                            <div class="modal-footer" style="margin-top:15px;margin-bottom:15px;">
+                                <div class="col-md-6 text-center">
+                                    {{ form_end(form) }}
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <a href="{{ path('fos_user_change_password') }}"><button type="button" class="btn btn-warning pull-right">Changer de mot de passe</button></a>
+                                </div>                                                                
+                            </div>
+                    {% endblock fos_user_content %}
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+	{% endblock %}
+	

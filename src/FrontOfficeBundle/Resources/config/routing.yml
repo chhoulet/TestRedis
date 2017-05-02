@@ -1,0 +1,17 @@
+front_office_homepage:
+    path:     /
+    defaults: { _controller: FrontOfficeBundle:Homepage:homepage }
+
+# Routes définissant les slots :
+front_office_slots_contact:
+    path:    /slots/contact 
+    defaults: { _controller: FrontOfficeBundle:Slots:contact}
+
+front_office_slots_about:
+    path:    /slots/about 
+    defaults: { _controller: FrontOfficeBundle:Slots:about}
+
+# Route gérant les articles:
+front_office_article_list:
+    path:    /article/list 
+    defaults: { _controller: FrontOfficeBundle:Article:list}

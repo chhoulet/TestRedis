@@ -1,0 +1,55 @@
+{% extends '::baseUser.html.twig' %}
+
+    {% block title %}Connectez-vous{% endblock %}
+    
+    {% block body %}
+
+		<div class="container" style="margin-top:70px">
+			<div class="row">
+			  <div class="col-sm-6 col-md-5 col-sm-offset-3 col-md-offset-3">
+			    <div class="panel panel-default">
+			    
+			      <div class="panel-body">
+				      	{% block fos_user_content %}
+					        <form action="{{ path('fos_user_security_check') }}" method="post">
+							    {% if csrf_token %}
+							        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+							    {% endif %}
+						        <fieldset style="background-color: rgb(31,174,151);">
+						            <div class="row">
+						               <div style="padding:25px;"> <img class="profile-img" src="http://3rwebtech.com/logo2.png" class="img-responsive" alt=""> </div>					              
+						            </div>
+						            <div class="row" style="margin-bottom: 20px;">
+						                <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+							                <div class="form-group">
+								                <label>Username:</label>
+								                  <div class="input-group"> <span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i> </span>
+								                    <input class="form-control" placeholder="Username" id="username" name="_username" value="{{ last_username }}" type="text" required="required" autofocus>
+								                  </div>
+							                </div>
+							                <div class="form-group">
+								                 <label>Mot de passe:</label>
+								                  <div class="input-group"> <span class="input-group-addon"> <i class="glyphicon glyphicon-lock"></i> </span>
+								                    <input class="form-control" placeholder="Password" id="password" name="_password" type="password" value="" required="required">
+								                  </div>
+							                </div>					               
+							                <div class="form-group">					                 
+								                <label>Se souvenir de moi
+								                    <input type="checkbox" id="remember_me" name="_remember_me" value="on">
+								                </label> <br>
+							                </div>
+							                <div class="col-md-6"><input type="submit" id="_submit" name="_submit" class="btn btn-warning" value="Validez"></div>
+							                <div class="col-md-6" style="color:black;"><a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a></div>
+						                
+						                </div>
+						            </div>						           
+						        </fieldset>
+					        </form>
+				    	{% endblock fos_user_content %}
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		
+	{% endblock %}

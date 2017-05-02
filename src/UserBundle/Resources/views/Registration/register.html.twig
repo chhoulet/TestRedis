@@ -1,0 +1,123 @@
+{% extends '::baseUser.html.twig' %}
+
+    {% block title %}Créez votre compte{% endblock %}
+    
+    {% block body %}
+		
+		<div class="container">
+
+			<div class="page-header">
+			    <h1>Créez votre compte <small>Texte à configurer</small></h1>
+			</div>
+
+			<!-- Registration form - START -->
+			<div class="container">
+			    <div class="widget">
+			    	{% block fos_user_content %}
+			        	{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+				            <div class="col-lg-6" style="background-color: rgb(31,174,151);padding:35px;">
+				                <div class="well well-sm" style="margin-top:15px;"><strong><span class="glyphicon glyphicon-asterisk"></span> Champ obligatoire</strong></div>
+				                <div class="form-group">
+				                    <label for="InputName">Nom d'utilisateur</label>
+				                    <div class="input-group">
+				                    	 {{ form_widget(form.username) }}
+				                        <!-- <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required> -->
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputName">Nom</label>
+				                    <div class="input-group">
+				                    	 {{ form_widget(form.name) }}
+				                        <!-- <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required> -->
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputName">Prénom</label>
+				                    <div class="input-group">
+				                    	 {{ form_widget(form.firstname) }}
+				                        <!-- <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required> -->
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputName">Adresse</label>
+				                    <div class="input-group">
+				                    	 {{ form_widget(form.adress) }}
+				                        <!-- <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required> -->
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputName">Code postal</label>
+				                    <div class="input-group">
+				                    	 {{ form_widget(form.postCode) }}
+				                        <!-- <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required> -->
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputName">Ville</label>
+				                    <div class="input-group">
+				                    	{{ form_widget(form.city) }}
+				                        <!-- <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required> -->
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputName">Téléphone</label>
+				                    <div class="input-group">
+				                    	{{ form_widget(form.phone) }}
+				                        <!-- <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required> -->
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputName">Mail</label>
+				                    <div class="input-group">
+				                    	{{ form_widget(form.email) }}
+				                        <!-- <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required> -->
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputEmail">Mot de passe</label>
+				                    <div class="input-group">
+				                        {{ form_widget(form.plainPassword.first) }}
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="InputEmail">Confirmez le mot de passe</label>
+				                    <div class="input-group">
+				                        {{ form_widget(form.plainPassword.second) }}
+				                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+				                    </div>
+				                </div>	
+				                <div class="col-md-12 text-center" style="margin-top:20px;margin-bottom:20px;">
+				               		{{ form_end(form) }}
+				               	</div>
+				            </div>
+				        
+			        {% endblock fos_user_content %}
+
+			        <div class="col-lg-5 col-md-push-1">
+			            <div class="col-md-12">
+			                <div class="alert alert-success">
+			                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+			                </div>
+			                <div class="alert alert-danger">
+			                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			<!-- Registration form - END -->
+
+			</div>			
+	
+	{% endblock %}
+				
+			

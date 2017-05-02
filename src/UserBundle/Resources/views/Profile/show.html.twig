@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+	{% block title %}Mon profil{% endblock %}
+
+	{% block body %}
+
+		<div class="row">
+			<div class="col-md-12">				
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Mon profil
+                    </div>
+                    <div class="panel-body" style="text-align:center;">
+                        <button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Voir mon profil</button>
+                    </div>
+                    <div class="panel-footer">
+                        A paramétrer !
+                    </div>
+                </div>                    
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(217,237,247);">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Mes informations personnelles</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Username : {{ user.username }}</p>
+                        <p>Nom : {{ user.name|upper }}</p>
+                        <p>Prénom : {{ user.firstname|capitalize }}</p>
+                        <p>Adresse : {{ user.adress }}</p>
+                        <p>Code postal : {{ user.postCode }}</p>
+                        <p>Ville : {{ user.city|capitalize }}</p>
+                        <p>Téléphone : {{ user.phone }}</p>
+                        <p>Mail : {{ user.email }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                        <a href="{{ path('fos_user_profile_edit') }}"><button type="button" class="btn btn-warning">Editer</button></a>
+                        
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+	{% endblock %}
+	

@@ -1,0 +1,43 @@
+back_office_homepage:
+    path:     /
+    defaults: { _controller: BackOfficeBundle:Dashboard:dashboard}
+
+back_office_article_create:
+    path:     /article/create
+    defaults: { _controller: BackOfficeBundle:Article:create}
+
+back_office_image_create:
+    path:     /image/create/{idArticle}
+    defaults: { _controller: BackOfficeBundle:Image:create}
+    requirements:
+        idArticle: "[0-9]+"
+
+back_office_article_activate:
+    path:    /article/activate/{idArticle}
+    defaults: { _controller: BackOfficeBundle:Article:activate}
+    requirements:
+        idArticle: "[0-9]+"
+
+back_office_article_desactivate:
+    path:    /article/desactivate/{idArticle}
+    defaults: { _controller: BackOfficeBundle:Article:desactivate}
+    requirements:
+        idArticle: "[0-9]+"
+
+# Gestion des messages:
+back_office_message_list:
+    path:    /message/list
+    defaults: { _controller: BackOfficeBundle:Message:list}
+
+back_office_message_state:
+    path:    /message/state /{action}/{idMessage}
+    defaults: { _controller: BackOfficeBundle:Message:state}
+    requirements: 
+        action: "[0-9]+"
+        idMessage: "[0-9]+"
+
+back_office_message_delete:
+    path:    /message/delete/{idMessage}
+    defaults: { _controller: BackOfficeBundle:Message:delete}
+    requirements:
+        idMessage: "[0-9]+"

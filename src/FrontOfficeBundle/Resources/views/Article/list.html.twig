@@ -1,0 +1,85 @@
+{% extends '::base.html.twig' %}
+
+	{% block title %}{% endblock %}
+
+	{% block body %}
+		<div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Company
+                        <strong>blog</strong>
+                    </h2>
+                    <hr>
+                </div>
+                	{% if listArticles is not empty and listArticles is not null %}
+		                {% for article in listArticles %}                
+			                <div class="col-lg-12 text-center">
+			                	{% if article.images is not empty and article.images is not null %}
+			                		{% for image in article.images %}
+					                    <img class="img-responsive img-border img-full" src="{{ asset('uploads/images/'~ image.filename) }}" alt="">
+					                {% endfor %}
+					            {% endif %}
+			                    <h2>{{article.title|upper}}
+			                        <br>
+			                        <small>Date: {{ article.dateCreated|date('d-m-Y') }}</small>
+			                    </h2>
+			                
+			                    {% if article.images is not empty and article.images is not null %}
+			                    	{% for image in article.images %}
+					                    <img class="img-responsive img-border img-left" src="{{ asset('uploads/images/'~ image.filename1) }}" alt="" style="width:250px;height:180px;margin-right:15px;margin-bottom:15px;">
+					                {% endfor %}
+					            {% endif %}
+					                    <p>{{ article.text1 }}</p><br>
+					                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+					                    <hr><br><br><br>
+
+			                    {% if article.images is not empty and article.images is not null %}
+									{% for image in article.images %}
+			                    		<img class="img-responsive img-border img-left" src="{{ asset('uploads/images/'~ image.filename2) }}" alt="" style="width:250px;height:180px;margin-right:15px;margin-bottom:15px;">
+			                    	{% endfor %}
+			                    {% endif %}
+			                    	{% if article.text2  is not null %}
+			                    		<p>{{ article.text2 }}</p><br>
+			                    		<a href="#" class="btn btn-default btn-lg">Read More</a>
+			                    		<hr><br><br><br>
+			                    	{% endif %}
+
+			                    {% if article.images is not empty and article.images is not null %}
+									{% for image in article.images %}
+			                    		<img class="img-responsive img-border img-left" src="{{ asset('uploads/images/'~ image.filename3) }}" alt="" style="width:250px;height:180px;margin-right:15px;margin-bottom:15px;">
+			                    	{% endfor %}
+			                    {% endif %}
+			                    	{% if article.text3  is not null %}
+			                    		<p>{{ article.text3 }}</p><br>
+			                    		<a href="#" class="btn btn-default btn-lg">Read More</a>
+			                    		<hr><br><br><br>
+			                    	{% endif %}
+
+			                    {% if article.images is not empty and article.images is not null %}
+									{% for image in article.images %}
+			                    		<img class="img-responsive img-border img-left" src="{{ asset('uploads/images/'~ image.filename4) }}" alt="" style="width:250px;height:180px;margin-right:15px;margin-bottom:15px;">
+			                    	{% endfor %}
+			                    {% endif %}
+			                    	{% if article.text4  is not null %}
+			                    		<p>{{ article.text4 }}</p><br>
+			                    		<a href="#" class="btn btn-default btn-lg">Read More</a>
+			                    		<hr><br><br><br>
+			                    	{% endif %}
+
+			                    {% if article.images is not empty and article.images is not null %}
+									{% for image in article.images %}
+			                    		<img class="img-responsive img-border img-left" src="{{ asset('uploads/images/'~ image.filename5) }}" alt="" style="width:250px;height:180px;margin-right:15px;margin-bottom:15px;">
+			                    	{% endfor %}
+			                    {% endif %}
+			                    	{% if article.text5  is not null %}
+			                    		<p>{{ article.text5 }}</p><br>
+			                    		<a href="#" class="btn btn-default btn-lg">Read More</a>
+			                    		<hr><br><br><br>
+			                    	{% endif %}	
+			                </div>
+			            {% endfor %}
+			        {% endif %}
+	        </div>
+	    </div>
+	{% endblock %}

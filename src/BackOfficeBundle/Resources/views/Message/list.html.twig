@@ -1,0 +1,91 @@
+{% extends '::baseAdmin.html.twig' %}
+
+	{% block title %}Messages list{% endblock %}
+
+	{% block body %}
+
+		<div id="page-wrapper">
+
+			{% for message in app.session.flashBag.get('messageRead') %}
+				<div class="flash">{{ message }}</div>
+			{% endfor %}
+			{% for messag in app.session.flashBag.get('messageAnswered') %}
+				<div class="flash">{{ messag }}</div>
+			{% endfor %}
+			{% for messa in app.session.flashBag.get('removeMess') %}
+				<div class="flash">{{ messa }}</div>
+			{% endfor %}
+
+            <div class="row">
+                <div class="col-lg-12" id="titreAdmin">
+                    <h1 class="page-header">Messages list</h1>
+                </div>               
+            </div>
+
+             <div class="row">
+            	<div class="col-md-12">
+            		<div class="panel panel-default">
+                        <div class="panel-heading">                            
+            				<div class="panel-body">
+	                            <div class="row">
+	                                <div class="col-lg-12">
+	                                    <div class="table-responsive">
+	                                        <table class="table table-bordered table-hover table-striped">
+	                                            <thead>
+	                                                <tr>
+	                                                    <th>Title</th>
+	                                                    <th>Author</th>
+	                                                    <th>Mail</th>
+	                                                    <th>Phone</th>
+	                                                    <th>Message</th>
+	                                                    <th>Date Sended</th>
+	                                                    <th>State</th>	                                                    
+	                                                    <th>Date Answered</th>	                                                    
+	                                                    <th>Actions</th>	                                                    
+	                                                </tr>
+	                                            </thead>
+	                                            <tbody style="text-align:justify">
+	                                            	{% if listMessages is not null %}
+		                                            	{% for message in listMessages %}
+			                                                <tr>
+			                                                    <td>{{ message.title|upper }}</td>
+			                                                    <td>{{ message.author|capitalize }}</td>
+			                                                    <td>{{ message.mail }}</td>
+			                                                    <td>{{ message.phone }}</td>
+			                                                    <td>{{ message.main }}</td>			                                                    
+			                                                    <td>{{ message.dateCreated|date('d-m-Y H-i') }}</td>
+			                                                    <td>
+			                                                    	{% if message.state == 0 %}
+			                                                    		<p>Message unread</p>
+			                                                    	{% elseif message.state == 2 %}
+			                                                    		<p style="background-color: blue;">Message read</p>
+			                                                    	{% elseif message.state == 3 %}
+			                                                    		<p style="background-color: red;">Message answered</p>
+			                                                    	{% endif %}
+			                                                    </td>
+			                                                    <td>
+			                                                    	{% if message.dateAnswered is not null %}
+			                                                    		{{ message.dateAnswered|date('d-m-Y H-i-s') }}                        
+			                                                    	{% endif %}
+			                                                    </td>
+			                                                    <td>
+			                                                    	<a href="{{ path('back_office_message_state',{action:2, idMessage:message.id}) }}" title="Mark this message as read"><button class="btn btn-success" style="margin-bottom:10px;">Read</button>
+			                                                    	<a href="{{ path('back_office_message_state',{action:3, idMessage:message.id}) }}" title="Mark this message as answered"><button class="btn btn-warning" style="margin-bottom:10px;">Answered</button>
+			                                                    	<a href="{{ path('back_office_message_delete',{idMessage:message.id}) }}" title="Delete this message" onclick="return(confirm('Are you sure to want delete this message ?'))">  <button class="btn btn-danger">Delete</button>
+			                                                    </td>
+			                                                </tr>
+			                                            {% endfor %}
+			                                        {% endif %}
+	                                            </tbody>
+	                                        </table>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+
+	{% endblock %}

@@ -1,0 +1,147 @@
+{% extends '::baseAdmin.html.twig' %}
+
+	{% block title %}Créer un article{% endblock %}
+
+	{% block body %}
+		<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12" id="titreAdmin">
+                    <h1 class="page-header">Créer un article</h1>
+                </div>               
+            </div>
+
+            {% for message in app.session.flashBag.get('createArticle') %}
+            	<div id="flash">{{ message }}</div>
+            {% endfor %}
+
+            {% for messag in app.session.flashBag.get('activate') %}
+            	<div id="flash">{{ messag }}</div>
+            {% endfor %}
+
+            {% for messa in app.session.flashBag.get('desactivate') %}
+            	<div id="flash">{{ messa }}</div>
+            {% endfor %}
+
+            <div class="row">
+            	<div class="col-md-12">
+            		<div class="panel panel-default">
+                        <div class="panel-heading">                            
+            				<div class="panel-body">
+	                            <div class="row">
+	                                <div class="col-lg-12 text-center">
+	                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+										    Lancer le formulaire
+										</button>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div class="row">
+            	<div class="col-md-12">
+            		<div class="panel panel-default">
+                        <div class="panel-heading">                            
+            				<div class="panel-body">
+	                            <div class="row">
+	                                <div class="col-lg-12">
+	                                    <div class="table-responsive">
+	                                        <table class="table table-bordered table-hover table-striped">
+	                                            <thead>
+	                                                <tr>
+	                                                    <th>Titre</th>
+	                                                    <th>Texte N° 1</th>
+	                                                    <th>Texte N° 2</th>
+	                                                    <th>Texte N° 3</th>
+	                                                    <th>Texte N° 4</th>
+	                                                    <th>Texte N° 5</th>
+	                                                    <th>Images</th>
+	                                                    <th>Actions</th>
+	                                                </tr>
+	                                            </thead>
+	                                            <tbody style="text-align:justify">
+	                                            	{% if listArticles is not null %}
+		                                            	{% for article in listArticles %}
+			                                                <tr>
+			                                                    <td>{{ article.title|upper }}</td>
+			                                                    <td>{{ article.text1 }}</td>
+			                                                    <td>{{ article.text2 }}</td>
+			                                                    <td>{{ article.text3 }}</td>
+			                                                    <td>{{ article.text4 }}</td>
+			                                                    <td>{{ article.text5 }}</td>
+			                                                    <td>
+			                                                    	{% for image in article.images %}                                            	
+			                                                    		<img src="{{ asset('uploads/images/'~image.filename) }}" alt="" style="margin-top:10px;width:190px;height:130px;">
+			                                                    		<img src="{{ asset('uploads/images/'~image.filename1) }}" alt="" style="margin-top:10px;width:190px;height:130px;">
+			                                                    		<img src="{{ asset('uploads/images/'~image.filename2) }}" alt="" style="margin-top:10px;width:190px;height:130px;">
+			                                                    		<img src="{{ asset('uploads/images/'~image.filename3) }}" alt="" style="margin-top:10px;width:190px;height:130px;">
+			                                                    		<img src="{{ asset('uploads/images/'~image.filename4) }}" alt="" style="margin-top:10px;width:190px;height:130px;">
+			                                                    		<img src="{{ asset('uploads/images/'~image.filename5) }}" alt="" style="margin-top:10px;width:190px;height:130px;">
+			                                                    	{% endfor %}
+			                                                    </td>
+			                                                    <td>
+			                                                    	<a href="{{ path('back_office_image_create',{idArticle:article.id}) }}" title="Cliquez pour ajouter une image"><button class='btn btn-info'>Ajouter une image</button></a>
+			                                                    	{% if article.active == 1 %}
+			                                                    		<a href="{{ path('back_office_article_desactivate',{idArticle:article.id}) }}" title="Desactivate this exposition"><button class="btn btn-warning" style="margin-top:10px;">Desactivate</button></a>
+			                                                    	{% else %}
+			                                                    		<a href="{{ path('back_office_article_activate',{idArticle:article.id}) }}" title="Activate this exposition"><button class="btn btn-success" style="margin-top:10px;">Activate</button></a>
+			                                                    	{% endif %}
+			                                                    </td>
+			                                                </tr>
+			                                            {% endfor %}
+			                                        {% endif %}
+	                                            </tbody>
+	                                        </table>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				        <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					            <span aria-hidden="true">&times;</span>
+					        </button>
+				        	<h4 class="modal-title" id="myModalLabel">Créer un article</h4>
+				      	</div>
+				        <div class="modal-body">
+					        
+					        	
+				      			
+				       		{{form_start(form)}}
+				       		{{form_row(form.title)}}
+				       		{{form_row(form.text1)}}
+				       		{{form_row(form.text2)}}
+				       		{{form_row(form.text3)}}
+				       		{{form_row(form.text4)}}
+				       		{{form_row(form.text5)}}				       		
+				      	</div>
+				      	<div class="modal-footer">
+				      		<div class="col-md-12 text-center">	
+				      			<div class="col-md-4">
+					        		{{form_row(form.submit)}}				        		
+					        	</div>
+					        	<div class="col-md-4">
+					        		{{form_row(form.saveAndAdd)}}
+					        		{{form_end(form)}}
+					        	</div>
+					        	<div class="col-md-4">
+					        		<button type="button" class="btn btn-warning" data-dismiss="modal">Fermer</button>
+					        	</div>
+				        	</div>
+				        </div>
+			        </div>
+		    	</div>
+		    </div>
+		</div>
+
+
+	{% endblock %}

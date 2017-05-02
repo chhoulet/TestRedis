@@ -1,0 +1,29 @@
+{% extends '::baseUser.html.twig' %}
+
+    {% block title %}Confirmation d'inscription{% endblock %}
+
+    {% block body %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    {% block fos_user_content %}
+                        <p>Bienvenue {{ user.firstname|capitalize ~' '~ user.name|upper }} ! Votre inscription est effective.</p>
+                        
+                        <p>Bonne navigation sur le site de ...</p>
+
+                        <div class="col-md-6">
+                            <a href="{{ path('fos_user_profile') }}"><button class="btn btn-success">Mon espace personnel</button></a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ path('front_office_homepage') }}"><button class="btn btn-success">Retour à l'accueil</button></a>
+                        </div>                       
+                    {% endblock fos_user_content %}
+
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}   
+
